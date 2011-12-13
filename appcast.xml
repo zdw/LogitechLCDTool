@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+  <channel>
+    <title>LogitechLCDTool Changelog</title>
+    <link>http://www.entropy.ch/software/macosx/lcdtool/appcast.xml</link>
+    <description>Most recent changes with links to updates.</description>
+    <language>en</language>
+
+	<item>
+		<title>Version 0.7b</title>
+		<description><![CDATA[
+			<ul>
+				<li>Added a preferences panel</li>
+				<li>Added a preferences option to control the automatic software update check.</li>
+				<li>Added a preferences option to control if the program should start displaying the HTML code automatically after launching. The default is on.</li>
+				<li>Added an “Open Examples Folder” command to the Help menu. The examples are now stored inside the application bundle and are therefore always available even after you toss the original disk image file. It also means that the examples are updated along with the application during automatic software updates.</li>
+				<li>XMLHttpRequest() was broken, works now. Check out the stock ticker example HTML file.</li>
+				<li><p>The application now ships with an embedded web resource library containing useful stuff like a default CSS or popular JavaScript libraries such as <code>prototype.js</code>. You can load these resources with relative paths: <code>src="js/prototype.js"</code>. The Help menu contains a new command to open the library folder so you can see what goodies are included.</p>
+				<p>This release includes some JavaScript libraries: <a href="http://www.sergiopereira.com/articles/prototype.js.html">prototype.js</a>, <a href="http://dojotoolkit.org/">dojo</a> and <a href="http://mochikit.com/">MochiKit</a>. A lot of the functionality won’t be applicable in a non-browser, non-interactive environment like LogitechLCDTool, but some modules like DOM manipulation will certainly help.</p>
+				<p>There is also a default CSS file (<code>css/default.css</code>) which you can load to set up some useful defaults for the BODY element (check out the <code>.border</code> class).</p>
+				<p>If there’s something you’d like to see included, send me an email and I’ll take a look and decide if it’s of general interest.</p>
+				</li>
+				<li>the <code>window.application.updateDisplay()</code> function now returns a true/false value indicating if the LCD screen was updated successfully. Failure to update probably means that no display is available and any <code>setInterval()</code> timers should be cleared. The default iTunes HTML example was updated accordingly but it is not installed automatically, if you want it you’ll have to copy/paste the new HTML code from the example file or zap the preferences file as noted in the <a href="http://www.entropy.ch/software/macosx/lcdtool/#support">FAQ</a> on the website.</li>
+				<li>Added a new JavaScript API function <code>window.application.getVersion()</code>. It returns the version of the host application so your script can refuse to run if the version is too old. This is useful if you use resources in the new library. You’ll be able to enforce the first version that shipped with the resources you use.</li>
+			</ul>
+		]]></description>
+		<pubDate>Sat, 06 Jan 2007 20:00:00 +0100</pubDate>
+		<enclosure url="http://www2.entropy.ch/download/LogitechLCDTool_0.7b.zip" length="763388" type="application/octet-stream"/>
+	</item>
+
+    <item>
+      <title>Version 0.6b</title>
+      <description><![CDATA[<ul>
+	<li>adsf</li>
+</ul>]]></description>
+      <pubDate>Mon, 01 Jan 2007 15:35:25 +0100</pubDate>
+      <enclosure url="http://www2.entropy.ch/download/LogitechLCDTool_0.6b.zip" length="613987" type="application/octet-stream"/>
+    </item>
+
+
+    <item>
+      <title>Version 0.5b</title>
+      <description><![CDATA[ 
+<ul> 
+	<li>First public release</b></li> 
+</ul> 
+]]></description>
+      <pubDate>Mon, 09 Jan 2006 19:20:11 +0000</pubDate>
+      <enclosure url="http://www2.entropy.ch/download/LogitechLCDTool_0.5b.zip" length="1600000" type="application/octet-stream"/>
+    </item>
+
+  </channel>
+</rss>

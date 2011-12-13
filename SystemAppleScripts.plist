@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>iTunesCurrentTrackTitle</key>
+	<string>tell application "iTunes" to name of current track</string>
+	<key>iTunesCurrentTrackArtist</key>
+	<string>tell application "iTunes" to artist of current track</string>
+	<key>iTunesCurrentTrackDuration</key>
+	<string>tell application "iTunes" to duration of current track</string>
+	<key>iTunesPlayerPosition</key>
+	<string>tell application "iTunes" to player position</string>
+	<key>iTunesCurrentTrackFullStatus</key>
+	<string><![CDATA[tell application "iTunes"
+	
+	set pos to player position
+	
+	if kind of current track contains "stream" then
+		set dur to 0
+		set trackname to quoted form of (current stream title as text)
+		set trackartist to quoted form of (name of current track as text)
+		set trackalbum to "'Internet Radio'"
+	else
+		tell current track
+			set dur to duration
+			set trackname to quoted form of (name as text)
+			set trackartist to quoted form of (artist as text)
+			set trackalbum to quoted form of (album as text)
+		end tell
+	end if
+	
+	"{'position': '" & pos & "', 'duration': '" & dur & "', 'name': " & trackname & ", 'artist': " & trackartist & ", 'album': " & trackalbum & "}"
+	
+end tell]]></string>
+	<key>iTunesPreviousTrack</key>
+	<string>tell application "iTunes" to previous track</string>
+	<key>iTunesNextTrack</key>
+	<string>tell application "iTunes" to next track</string>
+	<key>iTunesPlayPause</key>
+	<string>tell application "iTunes" to playpause</string>
+	<key>visitEntropyWebsite</key>
+	<string>tell application "Safari"
+	activate
+	make new document with properties {URL:"http://www.entropy.ch/software/macosx/lcdtool/?softkey"}
+end tell</string>
+</dict>
+</plist>

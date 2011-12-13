@@ -1,0 +1,76 @@
+<!-- stock ticker example -->
+<html>
+<head>
+	<title>JavaScript Playground</title>
+	<script type="text/javascript" src="js/prototype.js"></script>
+	<script type="text/javascript">
+
+		function init() {
+			var data = sendRequest('http://wu.apple.com/fq/applewidgets/quote.asp?key=tHisIsApplewidgeTs&symbols=AAPL,AMZN');
+			var div = $('quotes');
+			div.innerHTML = "";
+
+			var quotes = data.documentElement.getElementsByTagName('QUOTE');
+			for (var i = 0; i < quotes.length; i++) {
+				var quote = quotes.item(i);
+				div.appendChild(quote2span(quote));
+			}
+			setInterval("update()", 1000);
+		}
+
+	
+	function update() {
+			window.application.updateDisplay();
+		}
+		
+
+		function quote2span(quote) {
+			var quotespan = document.createElement('span');
+			quotespan.setAttribute('class', 'quote');
+
+			var childs = quote.getElementsByTagName('*');
+			for (var i = 0; i < childs.length; i++) {
+				var child = childs.item(i);
+				var span = document.createElement('span');
+				span.setAttribute('class', child.nodeName);
+				span.innerHTML = child.childNodes.item(0).nodeValue;
+				quotespan.appendChild(span);
+			}
+			
+			return quotespan
+		}
+		
+		function sendRequest(url) {
+			var request = new XMLHttpRequest();
+			request.open("GET", url, false);
+			request.send();
+			if (request.status == 200) return request.responseXML;
+			return false;
+		}
+		
+	</script>
+
+	<style type="text/css">
+		.quote {border: 1px solid blue; margin: 2px; padding: 2px;}
+		.quote span {margin-left: 5px;}
+		.CHANGE:before {content: "Change: ";}
+		.EXCHANGE:before {content: "Exchange: ";}
+		.SYMBOL:before {content: "Symbol: ";}
+		.LASTTRADE:before {content: "Last Trade: ";}
+		.PCTCHANGE:before {content: "% Change: ";}
+		.DAYLOW:before {content: "Day Low: ";}
+		.DAYHIGH:before {content: "Day High: ";}
+		.VOLUME:before {content: "Volume: ";}
+		.MKT_STATUS {display: none;}
+	</style>
+
+	<link rel="stylesheet" href="css/default.css" />
+</head>
+
+<body class="border" onload="init();">
+	<marquee id="quotes"></marquee>
+</body>
+
+</html>
+
+

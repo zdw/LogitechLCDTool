@@ -1,0 +1,19 @@
+
+body {
+	position: absolute;
+	margin: 0;
+	overflow: hidden;
+	width: 160px; height: 43px;
+}
+
+body.border {
+	border: 1px solid black;
+	padding: 1px;
+	width: 156px; height: 39px;
+}
+
+
+body, td {
+	font-size: 9px;
+	font-family: Monaco;
+}

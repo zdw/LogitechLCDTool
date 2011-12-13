@@ -1,0 +1,45 @@
+<!-- Demo using <canvas> 2d graphics. Written by Joachim Fornallaz / http://jf.omnis.ch -->
+<html>
+<head>
+<script type="text/javascript">
+
+	function $(id) {return document.getElementById(id);}
+	function setText(id, value) {$(id).innerHTML = value}
+	function scpt(id) {return window.application.runSystemScript(id)}
+	function format(sec) {var ss = Math.floor(sec % 60); ss = ss < 10 ? '0' + ss : ss; return Math.floor(sec/60) + ':' + ss}
+	function update() {
+		var pos = scpt('iTunesPlayerPosition');
+		var duration = scpt('iTunesCurrentTrackDuration');
+		
+		setText('pos', format(pos));
+		setText('duration', format(duration));
+		setText('artist', scpt('iTunesCurrentTrackArtist'));
+		setText('title', scpt('iTunesCurrentTrackTitle'));
+
+		var canvas = document.getElementById("ProgressDisplay");
+		var context = canvas.getContext("2d");
+		var half = (canvas.height) / 2;
+		var position = Math.floor((canvas.width - canvas.height)  / duration * pos) + half;
+		context.clearRect(0, 0, canvas.width, canvas.height);
+		context.strokeRect(half, 0.5, canvas.width - canvas.height, canvas.height - 1);
+		context.moveTo(position, 1);
+		context.lineTo(position + half - 0.5, half);
+		context.lineTo(position, half * 2 - 1);
+		context.lineTo(position - half + 0.5, half);
+		context.lineTo(position, 1);
+		context.fill();
+		
+		window.application.updateDisplay();
+	}
+	setInterval("update()", 1000);
+	
+</script>
+
+</head>
+<body onload="update();" style='position: absolute; margin: 0; padding: 1px 1px 1px 2px; width: 155px; height: 39px; overflow: hidden; border: 1px solid black; font-size: 9px; font-family: Monaco;'>
+<div id="main"><span id="artist"></span></div>
+<marquee scrolldelay="1000" scrollamount="20"><span id="title"></span></marquee>
+<div><span id="pos"></span> <canvas id="ProgressDisplay" width='90' height='9' style="padding-bottom: 3px; vertical-align: middle;"> <span id="duration"/></div>
+</body>
+</html>	
+	

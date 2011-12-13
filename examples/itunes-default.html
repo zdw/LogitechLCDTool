@@ -1,0 +1,65 @@
+<html>
+<head>
+<script type="text/javascript" src="js/prototype.js"></script>
+<script type="text/javascript">
+	var timer;
+	function setText(id, value) {$(id).innerHTML = value}
+	function formatTime(sec) {var ss = Math.floor(sec % 60); ss = ss < 10 ? '0' + ss : ss; return Math.floor(sec/60) + ':' + ss}
+
+	function update() {
+		var itunes = eval(window.application.runSystemScript('iTunesCurrentTrackFullStatus').replace(/'\\''/g, "\\'"));
+		setText('pos', formatTime(itunes['position']));
+		setText('duration', formatTime(itunes['duration']));
+		setText('artist', itunes['artist']);
+		setText('name', itunes['name']);
+		setText('album', itunes['album']);
+
+		$('diamond').style.left = Math.floor(90 / itunes['duration'] * itunes['position']) + 'px';
+		if(!window.application.updateDisplay()) stop();
+	}
+
+	function handleButton(button, upDown) {
+		if (upDown == "down") return;
+		if (button == "Softkey1") window.application.runUserScript('iTunesActivate');
+		if (button == "Softkey4") window.application.runSystemScript('visitEntropyWebsite');
+		if (button == "Display") showOverlay();
+	}
+
+	function showOverlay() {
+		var data = window.application.runUserScript('doShellScript');
+		setText('overlay', data);
+		$('overlay').style.display = 'block';
+		setTimeout("$('overlay').style.display = 'none';", 4000);
+	}
+
+	function init() {
+		window.application.registerUserScript('iTunesActivate', 'tell application "iTunes" to activate');
+		window.application.registerUserScript('doShellScript', 'do shell script "uptime"');
+		start();
+	}
+	
+	function start() {
+		timer = setInterval("update()", 1000);
+	}
+	
+	function stop() {
+		clearInterval(timer);
+	}
+</script>
+<style type="text/css">
+	#top {overflow: hidden; height: 13px; margin-left: 1px;}
+	#time {width: 156px;}
+	#progress {width: 90px; height: 7px; border: 1px solid black; position: relative; overflow: hidden;}
+	#diamond {position: absolute; z-index: -1; margin-left: -3px;}
+	#overlay {position: fixed; top: 0; left: 0; background-color: white; width: 160; height: 43; padding: 2px; display: none;}
+</style>
+<link rel="stylesheet" href="css/default.css" />
+</head>
+
+<body class="border" onload="init();">
+<div id="top"><span id="artist"></span></div>
+<marquee scrolldelay="1000" scrollamount="20"><span id="name"></span> - <span id="album"></span></marquee>
+<table id="time"><tr><td id="pos"></td><td><div id="progress"><img id="diamond" src="data:image/gif;base64,R0lGODlhBwAHAIAAAP///wAAACH5BAAAAAAALAAAAAAHAAcAAAIMhGMZq8sOAUSHJZkKADs=" /></div></td><td id="duration"></td></tr></table>
+<div id="overlay"></div>
+</body>
+</html>

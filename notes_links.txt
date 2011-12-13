@@ -1,0 +1,27 @@
+
+
+todo
+
+- profiling/performance
+- song name oben, album bei artist nicht song in mitte
+- wenn man previews aus dem store hört
+
+
+info links:
+
+- http://www.rogueamoeba.com/utm/archives/rslight.c
+- http://macosx.com/forums/software-programming-web-scripting/4826-background-image-dmg.html
+
+
+feedback links
+
+- versiontracker http://www.versiontracker.com/dyn/moreinfo/macosx/31574
+- macupdate http://www.macupdate.com/info.php/id/23633
+- amazon review 
+- logitech forum http://forums.logitech.com/logitech/board/message?board.id=stereo_20&message.id=293
+- macintouch
+- oreilly macdev -> z-10 review http://www.oreillynet.com/mac/blog/2007/01/indie_dev_brings_mac_compatibi.html
+- macnews.de http://www.macnews.de/news/96359.html
+- apple 
+- everythingusb.com http://www.everythingusb.com/logitech_z10_interactive_speaker_system.html
+- http://www.tuaw.com/2007/01/03/logitechlcdtool-homegrown-mac-support-for-logitech-z-10-speake/
